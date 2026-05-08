@@ -1,0 +1,65 @@
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+body { background: linear-gradient(135deg, #4CA1AF, #C4E0E5); min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 20px; color: #333; }
+.app-container { width: 100%; max-width: 420px; height: 85vh; max-height: 800px; background-color: #fdfbf7; box-shadow: 0 15px 35px rgba(0,0,0,0.2); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; }
+header { background-color: #d35400; color: white; padding: 22px; text-align: center; box-shadow: 0 4px 6px rgba(0,0,0,0.05); z-index: 10; }
+header h1 { font-size: 1.6rem; font-family: 'Courier New', Courier, monospace; letter-spacing: 1px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+
+/* --- Barra de Rolagem Customizada --- */
+main { padding: 24px; flex: 1; overflow-y: auto; }
+main::-webkit-scrollbar { width: 6px; }
+main::-webkit-scrollbar-track { background: transparent; }
+main::-webkit-scrollbar-thumb { background-color: #cbd5e1; border-radius: 10px; }
+
+/* --- Área de digitação Atualizada --- */
+/* Fundo mais neutro para evitar choque visual */
+.notepad { background-color: #f8f9fa; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); padding: 15px; margin-bottom: 20px; border-left: 5px solid #f1c40f; }
+.notepad-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; }
+.hint { font-size: 0.8rem; color: #888; text-transform: uppercase; font-weight: bold; }
+
+/* Título e Textarea */
+#noteTitle { width: 100%; border: none; background: transparent; font-size: 1.2rem; font-weight: 700; outline: none; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed #ccc; color: #2c3e50; }
+#noteTitle::placeholder { color: #a0aec0; font-weight: 400; }
+textarea { width: 100%; height: 100px; background-color: transparent; border: none; resize: none; outline: none; font-size: 1.1rem; line-height: 32px; background-image: repeating-linear-gradient(transparent, transparent 31px, #e9ecef 31px, #e9ecef 32px); padding: 0 5px; color: #444; }
+
+/* Microfone, Seletor e Botão */
+#micBtn { background-color: #ecf0f1; color: #333; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 1.2rem; display: flex; justify-content: center; align-items: center; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-top: 0; padding: 0; }
+#micBtn.recording { background-color: #e74c3c; animation: pulse 1.5s infinite; }
+@keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); } }
+.actions-group { display: flex; gap: 10px; margin-top: 10px; }
+#categorySelect { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ccc; outline: none; background-color: white; font-size: 1rem; }
+#saveBtn { flex: 2; background-color: #27ae60; color: white; border: none; padding: 12px; font-size: 1.1rem; font-weight: 600; border-radius: 8px; margin-top: 0; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 6px rgba(39, 174, 96, 0.3); }
+#saveBtn:hover { background-color: #219653; transform: translateY(-2px); }
+
+/* --- Área de Notas Salvas e Busca --- */
+.saved-notes h2 { font-size: 1.2rem; color: #555; }
+#searchInput { width: 100%; padding: 12px 15px; margin: 15px 0; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; outline: none; transition: border 0.3s; }
+#searchInput:focus { border-color: #3498db; }
+#notesList { list-style: none; }
+#notesList li { background-color: white; padding: 15px; border-radius: 10px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 8px; border-left: 4px solid #e67e22; transition: transform 0.2s ease; }
+
+/* Hierarquia Interna da Nota (Data, Edição Inline, Lixeira SVG) */
+.note-header-card { display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 5px; }
+.note-meta { display: flex; align-items: center; gap: 10px; }
+.note-date { font-size: 0.75rem; color: #95a5a6; }
+.note-body { display: flex; flex-direction: column; gap: 5px; width: 100%; }
+
+/* Campos Editáveis Inline */
+.note-title-display { font-weight: 700; font-size: 1.1rem; color: #2c3e50; outline: none; padding: 2px; border-radius: 4px; transition: background 0.2s; }
+.note-text-display { color: #444; font-size: 1rem; line-height: 1.4; outline: none; padding: 2px; border-radius: 4px; white-space: pre-wrap; transition: background 0.2s; }
+.note-title-display:focus, .note-text-display:focus { background-color: #f1f8ff; border-left: 2px solid #3498db; }
+.note-title-display:empty:before { content: attr(data-placeholder); color: #bdc3c7; font-weight: 400; font-style: italic; }
+
+/* Botão Ícone de Lixeira */
+.delete-btn { background: transparent; border: none; cursor: pointer; padding: 5px; display: flex; justify-content: center; align-items: center; }
+.delete-btn svg { width: 16px; height: 16px; fill: #bdc3c7; transition: fill 0.2s ease, transform 0.2s; }
+.delete-btn:hover svg { fill: #e74c3c; transform: scale(1.1); }
+
+/* --- Tags de Categoria --- */
+.tag { align-self: flex-start; padding: 3px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: bold; color: white; text-transform: uppercase; letter-spacing: 0.5px; }
+.tag-geral { background-color: #95a5a6; }
+.tag-trabalho { background-color: #34495e; }
+.tag-faculdade { background-color: #8e44ad; }
+.tag-casa { background-color: #16a085; }
+.tag-pessoal { background-color: #f39c12; }
+.tag-marketing { background-color: #e74c3c; }
+.tag-programação { background-color: #2980b9; }

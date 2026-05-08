@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Meu Bloco de Notas</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#d35400">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Lista de Afazeres</h1>
+        </header>
+        
+        <main>
+            <div class="notepad">
+                <div class="notepad-header">
+                    <span class="hint">Digite ou dite sua nota:</span>
+                    <button id="micBtn" title="Ditar anotação" aria-label="Ditar com voz">🎤</button>
+                </div>
+                
+                <input type="text" id="noteTitle" placeholder="Título da anotação (opcional)">
+                <textarea id="noteInput" placeholder="Escreva sua anotação aqui..."></textarea>
+                
+                <div class="actions-group">
+                    <select id="categorySelect" aria-label="Categoria da nota">
+                        <option value="Geral">Geral</option>
+                        <option value="Pessoal">Pessoal</option>
+                        <option value="Trabalho">Trabalho</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Programação">Programação</option>
+                        <option value="Faculdade">Faculdade</option>
+                        <option value="Casa">Casa</option>
+                    </select>
+                    <button id="saveBtn">Salvar Nota</button>
+                </div>
+            </div>
+
+            <div class="saved-notes">
+                <div class="notes-header">
+                    <h2>Anotações Salvas</h2>
+                </div>
+                
+                <input type="text" id="searchInput" placeholder="🔍 Buscar por palavra ou categoria...">
+                
+                <ul id="notesList"></ul>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
